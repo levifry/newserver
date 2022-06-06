@@ -1,21 +1,10 @@
 import { createServer } from 'node:http';
-
 const host = 'localhost'
-const port = '3007'
-let path = ''
-
+const port = '3001'
 const server = createServer((request, response) => {
-  path = request.path.split('/')
-  if (path[0] === undefined) {
-    if (request.method === 'GET') {
-      response.end("Hello Galvanize!");
-    }
-  }
-  response.statusCode(404);
-  response.end();
+let path = request.url.split('/')
+  response.end('Hello, Galvanize!');
 });
-
-
-server.listen(3007, "localhost", () => {
+server.listen(port, host, () => {
   console.log(`Server running at http://${host}:${port}/`);
 });
